@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2020-2021 The LineageOS Project
+ * Copyright (C) 2021 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,6 +77,38 @@ cc_prebuilt_library_shared {
 	check_elf_files: false,
 	prefer: true,
 	soc_specific: true,
+}
+
+android_app_import {
+	name: "MotoSignatureApp",
+	owner: "xiaomi",
+	apk: "proprietary/app/MotoSignatureApp/MotoSignatureApp.apk",
+	certificate: "platform",
+	dex_preopt: {
+		enabled: false,
+	},
+}
+
+android_app_import {
+	name: "MotoDolbyV3",
+	owner: "xiaomi",
+	apk: "proprietary/priv-app/MotoDolbyV3/MotoDolbyV3.apk",
+	certificate: "platform",
+	dex_preopt: {
+		enabled: false,
+	},
+	privileged: true,
+}
+
+android_app_import {
+	name: "daxService",
+	owner: "xiaomi",
+	apk: "proprietary/priv-app/daxService/daxService.apk",
+	certificate: "platform",
+	dex_preopt: {
+		enabled: false,
+	},
+	privileged: true,
 }
 
 android_app_import {
@@ -170,39 +202,6 @@ android_app_import {
 }
 
 android_app_import {
-	name: "MotoSignatureApp",
-	owner: "xiaomi",
-	apk: "proprietary/app/MotoSignatureApp/MotoSignatureApp.apk",
-	certificate: "platform",
-	dex_preopt: {
-		enabled: false,
-	},
-}
-
-android_app_import {
-	name: "MotoDolbyV3",
-	owner: "xiaomi",
-	apk: "proprietary/priv-app/MotoDolbyV3/MotoDolbyV3.apk",
-	certificate: "platform",
-	dex_preopt: {
-		enabled: false,
-	},
-	privileged: true,
-    overrides: ["MusicFX", "AudioFX"],
-}
-
-android_app_import {
-	name: "daxService",
-	owner: "xiaomi",
-	apk: "proprietary/priv-app/daxService/daxService.apk",
-	certificate: "platform",
-	dex_preopt: {
-		enabled: false,
-	},
-	privileged: true,
-}
-
-android_app_import {
 	name: "ims",
 	owner: "xiaomi",
 	apk: "proprietary/system_ext/priv-app/ims/ims.apk",
@@ -224,6 +223,18 @@ android_app_import {
 	},
 	privileged: true,
 	system_ext_specific: true,
+}
+
+dex_import {
+	name: "com.motorola.motosignature",
+	owner: "xiaomi",
+	jars: ["proprietary/framework/com.motorola.motosignature.jar"],
+}
+
+dex_import {
+	name: "moto-checkin",
+	owner: "xiaomi",
+	jars: ["proprietary/framework/moto-checkin.jar"],
 }
 
 dex_import {
@@ -295,3 +306,4 @@ prebuilt_etc_xml {
 	sub_dir: "vintf/manifest",
 	soc_specific: true,
 }
+
